@@ -97,7 +97,8 @@ flowchart TB
 | Copilot CLI harness (`harness/run_task.py`) | This repo | Built, tested locally on the seeded bug |
 | Sandbox worker (`sandbox/worker.py`) | This repo | Built, tested locally on 1M-row CSV and xlsx |
 | Azure infrastructure (`infra/main.bicep`) | This repo | Built, untested |
-| Email and Teams trigger flows, approval flow, Jira actions | Power Automate | Planned |
+| Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run (see screenshots 05, 06); does not yet call the Orchestrator |
+| Teams trigger flow, approval flow, Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
 | Power BI analytics, `pac solution export` | Power Platform | Planned |
 
