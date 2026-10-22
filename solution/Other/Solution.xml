@@ -81,9 +81,36 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="cr8f1_agentruns" behavior="0" />
+      <RootComponent type="29" id="{40156cc1-32ce-f111-a05a-7ced8d778889}" behavior="0" />
       <RootComponent type="29" id="{e5d66733-29ce-f111-a05a-7ced8d778889}" behavior="0" />
       <RootComponent type="29" id="{f50bf54f-29ce-f111-a05a-7ced8d778889}" behavior="0" />
+      <RootComponent type="80" schemaName="cr8f1_AgenticControlTower" behavior="0" />
     </RootComponents>
-    <MissingDependencies />
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
+          <package appName="AppModule Web Resources Package" version="2.5">AppModuleWebResources (2.5)</package>
+        </Required>
+        <Dependent type="80" schemaName="cr8f1_AgenticControlTower" displayName="Agentic Control Tower" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="62" schemaName="cr8f1_AgenticControlTower" solution="Active" />
+        <Dependent type="80" schemaName="cr8f1_AgenticControlTower" displayName="Agentic Control Tower" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedmicrosoftcopilotstudio_dd228" solution="Active" id.connectionreferencelogicalname="new_sharedmicrosoftcopilotstudio_dd228" />
+        <Dependent type="29" displayName="Email request intake" id="{e5d66733-29ce-f111-a05a-7ced8d778889}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedmicrosoftcopilotstudio_dd228" solution="Active" id.connectionreferencelogicalname="new_sharedmicrosoftcopilotstudio_dd228" />
+        <Dependent type="29" displayName="Teams request intake" id="{f50bf54f-29ce-f111-a05a-7ced8d778889}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.20)" id.uniquename="AppChannel">
+          <package appName="PowerAppsAppFramework Package" version="1.0.0.26">PowerAppsAppFramework_Anchor (1.0.0.26)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=cr8f1_AgenticControlTower,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="cr8f1_AgenticControlTower" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>
