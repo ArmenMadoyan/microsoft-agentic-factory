@@ -98,7 +98,7 @@ flowchart TB
 | Sandbox worker (`sandbox/worker.py`) | This repo | Built, tested locally on 1M-row CSV and xlsx |
 | Azure infrastructure (`infra/main.bicep`) | This repo | Built, untested |
 | Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run before the Orchestrator step was added (screenshots 05, 06); now also calls the Orchestrator with the email subject and body preview (saved, not yet run) |
-| Teams intake flow (channel message -> `AgentRuns` row) | Power Automate | Built, two successful runs (screenshot 07); trigger polls, so runs appear a few minutes after a post; now also calls the Orchestrator with the channel message (saved, not yet run) |
+| Teams intake flow (channel message -> `AgentRuns` row) | Power Automate | Built, two successful runs (screenshot 07); trigger polls, so runs appear a few minutes after a post; now also calls the Orchestrator with the channel message; one successful end-to-end run (screenshot 09, docs/evidence/teams-flow-orchestrator-response.md) |
 | Approval flow, Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
 | `pac solution export` and unpack (table, flows, connection references) | `solution/` | Built, committed with identifiers sanitised |
