@@ -89,7 +89,7 @@ flowchart TB
 
 | Component | Where | Status |
 |---|---|---|
-| Orchestrator, description, instructions, generative orchestration | Copilot Studio | Built (unpublished; premium licence needed to publish) |
+| Orchestrator, description, instructions, generative orchestration | Copilot Studio | Built and published in the developer environment (screenshot 08); status still shows two warnings (no evaluation run, premium features) |
 | Planning, Development, Validation, Deployment, Sandbox agents | Copilot Studio | Built; Planning routing checked, Development routing checked but GitHub step waits on connection verification |
 | GitHub MCP tool on Development Agent | Copilot Studio | Added; connection awaiting verification |
 | `AgentRuns` table | Dataverse | Built (6 columns) |
@@ -97,7 +97,7 @@ flowchart TB
 | Copilot CLI harness (`harness/run_task.py`) | This repo | Built, tested locally on the seeded bug |
 | Sandbox worker (`sandbox/worker.py`) | This repo | Built, tested locally on 1M-row CSV and xlsx |
 | Azure infrastructure (`infra/main.bicep`) | This repo | Built, untested |
-| Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run (see screenshots 05, 06); does not yet call the Orchestrator |
+| Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run before the Orchestrator step was added (screenshots 05, 06); now also calls the Orchestrator with the email subject and body preview (saved, not yet run) |
 | Teams intake flow (channel message -> `AgentRuns` row) | Power Automate | Built, two successful runs (screenshot 07); trigger polls, so runs appear a few minutes after a post; does not yet call the Orchestrator |
 | Approval flow, Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
