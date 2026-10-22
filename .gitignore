@@ -4,3 +4,4 @@ __pycache__/
 agents/memory/*.json
 !agents/memory/.gitkeep
 runs/
+.venv-sandbox/

@@ -30,7 +30,8 @@ a closed Jira ticket, delegating each stage to a specialised sub-agent.
 ## Walkthrough order (one agent at a time)
 - [x] 0. GitHub account `ArmenMadoyan` connected + project repo created
 - [x] 1. Repo agent (GitHub access)  ← scaffolded; seeded Python bug in app/pricing.py
-- [ ] 2. Orchestrator skeleton + memory
+- [x] 2. Orchestrator skeleton in Copilot Studio (generative orchestration on); memory still a JSON file
+- [ ] 2b. Sandbox agent for large attachments (worker built and tested locally; Azure untested), see agents/sandbox-agent/
 - [ ] 3. Jira MCP: create / assign / comment / close
 - [ ] 4. Teams intake
 - [ ] 5. Planner (SDD)
