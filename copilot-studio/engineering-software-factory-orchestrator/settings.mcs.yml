@@ -1,0 +1,25 @@
+displayName: Engineering Software Factory Orchestrator
+schemaName: cr8f1_EngineeringSoftwareFactoryOrchestrator
+accessControlPolicy: GroupMembership
+authenticationMode: Integrated
+authenticationTrigger: Always
+configuration:
+  settings:
+    GenerativeActionsEnabled: true
+
+  isAgentConnectable: false
+  gPTSettings:
+    defaultSchemaName: cr8f1_EngineeringSoftwareFactoryOrchestrator.gpt.default
+
+  aISettings:
+    useModelKnowledge: false
+    isFileAnalysisEnabled: false
+    isSemanticSearchEnabled: false
+    contentModeration: Low
+    optInUseLatestModels: false
+
+  recognizer:
+    kind: GenerativeAIRecognizer
+
+template: default-2.1.0
+language: 1033

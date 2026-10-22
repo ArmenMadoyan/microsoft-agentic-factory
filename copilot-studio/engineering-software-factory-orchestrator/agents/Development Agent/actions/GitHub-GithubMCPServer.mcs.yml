@@ -1,0 +1,14 @@
+mcs.metadata:
+  componentName: GitHub - Github MCP Server
+kind: TaskDialog
+modelDisplayName: Github MCP Server
+modelDescription: Github MCP Server
+action:
+  kind: InvokeExternalAgentTaskAction
+  connectionReference: cr8f1_EngineeringSoftwareFactoryOrchestrator.shared_github.415aaed2378c4cbdbf55034d0acf5ca3
+  connectionProperties:
+    mode: Invoker
+
+  operationDetails:
+    kind: ModelContextProtocolMetadata
+    operationId: InvokeMCPServer
