@@ -7,6 +7,6 @@ deployable exports.
 - `flows/email-request-intake.json`: trigger and action definitions from the designer's Code view
 - `flows/teams-request-intake.md`: Teams flow settings
 
-For deployable source control, export a solution with the Power Platform CLI
-(`pac solution export`, then `pac solution unpack`) and commit the result to `solution/`.
-Not done yet. Connections and environment variables are never committed.
+The real export (`pac solution export` then `unpack`) is in `solution/`; see `solution/README.md`.
+These files are readable summaries of the same flows. Connections and environment variables are
+never committed.

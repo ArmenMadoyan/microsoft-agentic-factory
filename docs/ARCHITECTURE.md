@@ -100,7 +100,8 @@ flowchart TB
 | Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run (see screenshots 05, 06); does not yet call the Orchestrator |
 | Teams trigger flow, approval flow, Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
-| Power BI analytics, `pac solution export` | Power Platform | Planned |
+| `pac solution export` and unpack (table, flows, connection references) | `solution/` | Built, committed with identifiers sanitised |
+| Power BI analytics | Power Platform | Planned |
 
 ## Design decisions
 - **Approval before deploy** is a hard rule in the Deployment Agent's instructions and a planned flow gate.
