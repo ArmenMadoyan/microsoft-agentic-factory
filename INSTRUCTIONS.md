@@ -28,8 +28,8 @@ a closed Jira ticket, delegating each stage to a specialised sub-agent.
 - **MCPs**: Teams, Jira, GitHub, Miro.
 
 ## Walkthrough order (one agent at a time)
-- [ ] 0. GitHub account `ArmenMadoyan` connected + project repo created  ← we are here
-- [ ] 1. Repo agent (GitHub access)
+- [x] 0. GitHub account `ArmenMadoyan` connected + project repo created
+- [x] 1. Repo agent (GitHub access)  ← scaffolded; seeded Python bug in app/pricing.py
 - [ ] 2. Orchestrator skeleton + memory
 - [ ] 3. Jira MCP: create / assign / comment / close
 - [ ] 4. Teams intake
