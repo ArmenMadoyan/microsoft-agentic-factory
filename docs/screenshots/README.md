@@ -10,5 +10,6 @@
 | 07-power-automate-teams-flow-run-history.jpg | Run history of the "Teams request intake" flow: two runs, both Succeeded |
 | 08-copilot-studio-orchestrator-published.jpg | Orchestrator published ("Published 10/22/2026"), with the two status warnings still shown |
 | 09-teams-flow-end-to-end-run.jpg | Teams flow run: trigger, Dataverse row and Execute Agent and wait all green (21 s) |
+| 10-power-apps-agentruns-dashboard.jpg | Model-driven app "Agentic Control Tower": Active AgentRuns view showing four live rows |
 
-Files 04 to 09 were captured from a work-tenant developer environment and show a company logo and the environment name. Review before making this repository public.
+Files 04 to 10 were captured from a work-tenant developer environment and show a company logo and the environment name. Review before making this repository public.

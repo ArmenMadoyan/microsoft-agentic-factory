@@ -93,13 +93,14 @@ flowchart TB
 | Planning, Development, Validation, Deployment, Sandbox agents | Copilot Studio | Built; Planning routing checked, Development routing checked but GitHub step waits on connection verification |
 | GitHub MCP tool on Development Agent | Copilot Studio | Added; connection awaiting verification |
 | `AgentRuns` table | Dataverse | Built (6 columns) |
-| Canvas app shell with `Gallery1` | Power Apps | In progress; Studio could not list the table |
+| Model-driven app "Agentic Control Tower" (AgentRuns view and form) | Power Apps | Built and saved; shows live rows (screenshot 10); not yet added to the exported solution |
 | Copilot CLI harness (`harness/run_task.py`) | This repo | Built, tested locally on the seeded bug |
 | Sandbox worker (`sandbox/worker.py`) | This repo | Built, tested locally on 1M-row CSV and xlsx |
 | Azure infrastructure (`infra/main.bicep`) | This repo | Built, untested |
 | Email intake flow (Outlook trigger -> `AgentRuns` row) | Power Automate | Built, one successful test run before the Orchestrator step was added (screenshots 05, 06); now also calls the Orchestrator with the email subject and body preview (saved, not yet run) |
 | Teams intake flow (channel message -> `AgentRuns` row) | Power Automate | Built, two successful runs (screenshot 07); trigger polls, so runs appear a few minutes after a post; now also calls the Orchestrator with the channel message; one successful end-to-end run (screenshot 09, docs/evidence/teams-flow-orchestrator-response.md) |
-| Approval flow, Jira actions | Power Automate | Planned |
+| Deployment approval flow (Approve/Reject, decision written to `AgentRuns`) | Power Automate | Built and saved, not yet run (`power-platform/flows/deployment-approval.md`) |
+| Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
 | `pac solution export` and unpack (table, flows, connection references) | `solution/` | Built, committed with identifiers sanitised |
 | Power BI analytics | Power Platform | Planned |
