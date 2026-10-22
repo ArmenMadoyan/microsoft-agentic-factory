@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 agents/memory/*.json
 !agents/memory/.gitkeep
+runs/
