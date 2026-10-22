@@ -1,6 +1,6 @@
 # Teams request intake (flow)
 
-Status: built and saved, trigger not yet verified (no run seen after two test posts).
+Status: built and saved; two successful runs after two test posts (docs/screenshots/07). The trigger polls, so runs appeared a few minutes after posting.
 These values were set in the designer form; the code view was not captured.
 
 - Trigger: Microsoft Teams, "When a new channel message is added"
