@@ -93,7 +93,7 @@ flowchart TB
 | Planning, Development, Validation, Deployment, Sandbox agents | Copilot Studio | Built; Planning routing checked, Development routing checked but GitHub step waits on connection verification |
 | GitHub MCP tool on Development Agent | Copilot Studio | Added; connection awaiting verification |
 | `AgentRuns` table | Dataverse | Built (6 columns) |
-| Model-driven app "Agentic Control Tower" (AgentRuns view and form) | Power Apps | Built and saved; shows live rows (screenshot 10); not yet added to the exported solution |
+| Model-driven app "Agentic Control Tower" (AgentRuns view and form) | Power Apps | Built and saved; shows live rows (screenshot 10); included in the exported solution |
 | Copilot CLI harness (`harness/run_task.py`) | This repo | Built, tested locally on the seeded bug |
 | Sandbox worker (`sandbox/worker.py`) | This repo | Built, tested locally on 1M-row CSV and xlsx |
 | Azure infrastructure (`infra/main.bicep`) | This repo | Built, untested |
@@ -102,7 +102,7 @@ flowchart TB
 | Deployment approval flow (Approve/Reject, decision written to `AgentRuns`) | Power Automate | Built and saved, not yet run (`power-platform/flows/deployment-approval.md`) |
 | Jira actions | Power Automate | Planned |
 | HTTP API and custom connector for the workers | Azure + Power Platform | Planned |
-| `pac solution export` and unpack (table, flows, connection references) | `solution/` | Built, committed with identifiers sanitised |
+| `pac solution export` and unpack (table, 3 flows, app, connection references) | `solution/`, see `docs/solution-export.md` | Re-exported and committed with identifiers sanitised |
 | Power BI analytics | Power Platform | Planned |
 
 ## Design decisions
