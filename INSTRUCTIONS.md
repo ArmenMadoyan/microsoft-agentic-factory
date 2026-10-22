@@ -42,3 +42,25 @@ a closed Jira ticket, delegating each stage to a specialised sub-agent.
 ## Open questions
 - Copilot Studio vs. local-first: build and prove each agent locally (Copilot CLI + MCPs), then port to Copilot Studio.
 - `az` CLI is not installed; install before step 6 if targeting Azure.
+
+## Architecture v2: Power Platform backbone (decided)
+```
+Teams message -> Power Automate trigger -> Copilot Studio Orchestrator
+  -> Dataverse (memory, AgentRuns) -> Jira -> Planning agent -> GitHub / Dev agent
+  -> Validation -> Power Automate Approval (Teams Adaptive Card) -> Azure deployment
+  -> Dataverse update -> Teams card -> Power BI
+```
+- **Power Automate**: event bus and action layer. Copilot Studio actions are backed by cloud flows.
+- **Dataverse**: agent memory. Tables: Projects, Repositories, Incidents, Deployments, AgentRuns, ExecutionPlans. Replaces the JSON ticket file (schema: agents/memory/TICKET.template.json).
+- **Custom connector** to an HTTP API in front of the harness and sandbox worker (needs an Azure Function or Container App; not built).
+- **Approvals**: no deployment without a recorded human approval.
+- **Power Apps**: control tower (requests, agent runs, failures, approve or reject). **Power BI**: success rate, resolution time, deployment frequency.
+- **ALM**: environment variables for GitHub, Jira, Azure and endpoint URLs; `pac solution export` and `unpack` into `solution/`.
+
+### Build order
+1. Check tenant limits (Dataverse, custom connectors, DLP) with one small table.
+2. Dataverse tables, then the Teams trigger flow and Copilot Studio call (Flow 1).
+3. Jira flow, Planning agent, Teams reply.
+4. Approval card, then GitHub and Dev agent, then deployment.
+5. HTTP API and custom connector for harness and sandbox.
+6. Power Apps control tower, Power BI, pac export.
