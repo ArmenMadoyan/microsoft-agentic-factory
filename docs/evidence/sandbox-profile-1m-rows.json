@@ -1,0 +1,45 @@
+{
+  "file": "sales_1m.csv",
+  "rows": 1000000,
+  "columns": [
+    {
+      "name": "order_id",
+      "type": "BIGINT",
+      "nulls": 0,
+      "distinct": 1000000,
+      "min": 0,
+      "max": 999999,
+      "mean": 499999.5
+    },
+    {
+      "name": "region",
+      "type": "VARCHAR",
+      "nulls": 0,
+      "distinct": 3
+    },
+    {
+      "name": "amount",
+      "type": "DOUBLE",
+      "nulls": 0,
+      "distinct": 16664,
+      "min": -14.79,
+      "max": 238.34,
+      "mean": 99.9722026999977
+    },
+    {
+      "name": "qty",
+      "type": "BIGINT",
+      "nulls": 0,
+      "distinct": 19,
+      "min": 1,
+      "max": 19,
+      "mean": 9.999398
+    },
+    {
+      "name": "note",
+      "type": "VARCHAR",
+      "nulls": 99855,
+      "distinct": 1
+    }
+  ]
+}
