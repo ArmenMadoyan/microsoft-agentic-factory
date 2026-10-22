@@ -1,0 +1,43 @@
+{
+  "name": "Email request intake",
+  "status": "built; one successful run (docs/screenshots 05, 06)",
+  "note": "Action and trigger blocks copied from the designer's Code view. Not a full flow export.",
+  "trigger": {
+    "type": "OpenApiConnectionNotification",
+    "inputs": {
+      "parameters": {
+        "from": "<sender allow-list, one address>",
+        "includeAttachments": true,
+        "subjectFilter": "[REQUEST]",
+        "importance": "Any",
+        "fetchOnlyWithAttachment": false,
+        "folderPath": "Inbox"
+      },
+      "host": {
+        "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+        "connection": "shared_office365",
+        "operationId": "OnNewEmailV3"
+      }
+    },
+    "splitOn": "@triggerOutputs()?['body/value']"
+  },
+  "actions": {
+    "Add_a_new_row": {
+      "type": "OpenApiConnection",
+      "inputs": {
+        "parameters": {
+          "entityName": "cr8f1_agentrunses",
+          "item/cr8f1_runid": "@concat('RUN-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))",
+          "item/cr8f1_agent": "Orchestrator",
+          "item/cr8f1_source": "email",
+          "item/cr8f1_status": "received"
+        },
+        "host": {
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+          "connection": "shared_commondataserviceforapps",
+          "operationId": "CreateRecord"
+        }
+      }
+    }
+  }
+}
