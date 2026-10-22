@@ -1,0 +1,86 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_e1de5"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_4cd27"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_new_email_arrives_(V3)": {
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "type": "OpenApiConnectionNotification",
+          "inputs": {
+            "parameters": {
+              "from": "<allow-listed-sender>",
+              "includeAttachments": true,
+              "subjectFilter": "[REQUEST]",
+              "importance": "Any",
+              "fetchOnlyWithAttachment": false,
+              "folderPath": "Inbox"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "OnNewEmailV3"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Add_a_new_row": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "cr8f1_agentrunses",
+              "item/cr8f1_runid": "@concat('RUN-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))",
+              "item/cr8f1_agent": "Orchestrator",
+              "item/cr8f1_source": "email",
+              "item/cr8f1_status": "received",
+              "accept": "application/json;odata.metadata=minimal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

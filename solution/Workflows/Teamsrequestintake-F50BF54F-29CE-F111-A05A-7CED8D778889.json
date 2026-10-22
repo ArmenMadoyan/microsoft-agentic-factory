@@ -1,0 +1,90 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedteams_84c82"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_4cd27"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_new_channel_message_is_added": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "evaluatedRecurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body']",
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "groupId": "<teams-group-id>",
+              "channelId": "<teams-channel-id>"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "connectionName": "shared_teams",
+              "operationId": "OnNewChannelMessage"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Add_a_new_row": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "cr8f1_agentrunses",
+              "item/cr8f1_runid": "@concat('RUN-', formatDateTime(utcNow(), 'yyyyMMddHHmmss'))",
+              "item/cr8f1_agent": "Orchestrator",
+              "item/cr8f1_source": "teams",
+              "item/cr8f1_status": "received",
+              "accept": "application/json;odata.metadata=minimal"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

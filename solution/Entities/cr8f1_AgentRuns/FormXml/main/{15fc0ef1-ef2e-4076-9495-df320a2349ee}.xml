@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{15fc0ef1-ef2e-4076-9495-df320a2349ee}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{86c49a7d-69bd-4103-a29d-d831ebbd05c7}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{c99d65c9-ea10-40e7-ae97-b516c56d9284}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b8ff964f-dcf0-4522-b3b5-b61272070277}">
+                        <labels>
+                          <label description="RunId" languagecode="1033" />
+                        </labels>
+                        <control id="cr8f1_runid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cr8f1_runid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ca866c46-17a3-4ac7-96b8-469915af840f}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{89c3ae55-50ba-42da-8825-8443468fd775}">
+                        <labels>
+                          <label description="Ticket" languagecode="1033" />
+                        </labels>
+                        <control id="cr8f1_ticket" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="cr8f1_ticket" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{476ed5f8-6a82-4556-811f-65a7dc164c33}">
+                        <labels>
+                          <label description="Agent" languagecode="1033" />
+                        </labels>
+                        <control id="cr8f1_agent" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="cr8f1_agent" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a91b2ed4-1ff9-42e9-8fe9-3eec92570ddc}">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                        </labels>
+                        <control id="cr8f1_status" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="cr8f1_status" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d87f1e06-bb94-488a-95a1-fcc26f529234}">
+                        <labels>
+                          <label description="Source" languagecode="1033" />
+                        </labels>
+                        <control id="cr8f1_source" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="cr8f1_source" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{af6bea3b-26e5-4242-bc7b-d0609439a9e9}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr8f1_runid" select="1" icon="1" preview="1">
+        <row name="result" id="cr8f1_agentrunsid">
+          <cell name="cr8f1_runid" width="300" />
+          <cell name="cr8f1_ticket" width="150" />
+          <cell name="cr8f1_agent" width="150" />
+          <cell name="cr8f1_status" width="150" />
+          <cell name="cr8f1_source" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cr8f1_agentruns">
+          <attribute name="cr8f1_agentrunsid" />
+          <attribute name="cr8f1_runid" />
+          <attribute name="createdon" />
+          <order attribute="cr8f1_runid" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="cr8f1_ticket" />
+          <attribute name="cr8f1_agent" />
+          <attribute name="cr8f1_status" />
+          <attribute name="cr8f1_source" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active AgentRuns" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

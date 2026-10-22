@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e1e2afff-b411-4c6c-99af-15f386a56c77}</savedqueryid>
+    <layoutxml>
+      <grid name="cr8f1_agentrunses" jump="cr8f1_runid" select="1" icon="1" preview="1">
+        <row name="cr8f1_agentruns" id="cr8f1_agentrunsid">
+          <cell name="cr8f1_runid" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cr8f1_agentruns">
+          <attribute name="cr8f1_agentrunsid" />
+          <attribute name="cr8f1_runid" />
+          <attribute name="createdon" />
+          <order attribute="cr8f1_runid" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="AgentRuns Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
