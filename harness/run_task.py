@@ -64,7 +64,7 @@ def run_copilot(prompt: str, work: Path, run_dir: Path) -> subprocess.CompletedP
 
 def verify(work: Path, docker: bool) -> tuple[bool, str]:
     if docker:
-        tag = "agentic-sdlc-verify"
+        tag = "microsoft-agentic-factory-verify"
         build = run(["docker", "build", "-q", "-t", tag, str(work)], cwd=work)
         if build.returncode:
             return False, f"docker build failed: {build.stderr.strip()}"

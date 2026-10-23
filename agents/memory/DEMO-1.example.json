@@ -2,7 +2,7 @@
   "ticket": "DEMO-1",
   "assignment": "Discounts are wrong: a 10% discount on a 200.00 subtotal returns 0.0 instead of 180.0.",
   "plan": "Inspect app/pricing.py apply_discount; verify the percent-to-fraction conversion; fix; run pytest.",
-  "repo": "ArmenMadoyan/agentic-sdlc",
+  "repo": "ArmenMadoyan/microsoft-agentic-factory",
   "branch": "fix/demo-1",
   "relevant_files": [
     "app/pricing.py",

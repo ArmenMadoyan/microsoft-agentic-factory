@@ -1,4 +1,4 @@
-# Agentic SDLC for a Pharmacy Importer (reference scenario: PharmEtalon)
+# Microsoft Agentic Factory: agentic delivery for a pharmacy importer (reference scenario: PharmEtalon)
 
 An agentic delivery backbone built on the Microsoft stack: requests arrive by **Outlook email** or
 **Microsoft Teams**, **Power Automate** records them in **Dataverse** and hands them to a
@@ -7,6 +7,10 @@ validation, deployment, large-file sandbox). **Power Apps** shows every run, and
 anything that could reach production. Code work runs in harnesses that live in the customer's own
 environment; this repository is the portable backbone that is imported into it.
 
+> **Independent project.** Not affiliated with, endorsed by or sponsored by Microsoft. Microsoft, Microsoft 365,
+> Copilot, Copilot Studio, Power Apps, Power Automate, Dataverse, Teams, Outlook and Azure are trademarks of Microsoft
+> Corporation; GitHub and GitHub Copilot are trademarks of GitHub, Inc. They are used here only to describe the stack.
+>
 > **Scope and honesty.** This was built and tested in a Microsoft 365 developer environment.
 > **PharmEtalon** (a local Armenian pharmacy importer) is the *reference scenario* used to frame the
 > use cases below. It is **not** a delivered engagement, nothing here was deployed at the company, and
