@@ -1,0 +1,21 @@
+{
+  "ticket": "DEMO-1",
+  "assignment": "Discounts are wrong: a 10% discount on a 200.00 subtotal returns 0.0 instead of 180.0.",
+  "plan": "Inspect app/pricing.py apply_discount; verify the percent-to-fraction conversion; fix; run pytest.",
+  "repo": "ArmenMadoyan/agentic-sdlc",
+  "branch": "fix/demo-1",
+  "relevant_files": [
+    "app/pricing.py",
+    "tests/test_pricing.py"
+  ],
+  "reproduction": "2 failed, 2 passed in 0.01s",
+  "pr": "",
+  "deploy": "",
+  "status": "fixed",
+  "verification": {
+    "before": "2 failed, 2 passed in 0.01s",
+    "after": "4 passed in 0.00s",
+    "copilot_exit": 0,
+    "diff_stat": "app/pricing.py | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)"
+  }
+}

@@ -2,6 +2,9 @@
 __pycache__/
 .pytest_cache/
 agents/memory/*.json
+!agents/memory/TICKET.template.json
+!agents/memory/*.example.json
 !agents/memory/.gitkeep
 runs/
 .venv-sandbox/
+.DS_Store
