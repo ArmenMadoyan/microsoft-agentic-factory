@@ -4,7 +4,6 @@ Reference copies of what was built in the developer environment. They are docume
 deployable exports.
 
 - `dataverse/AgentRuns.table.md`: table and columns
-- `flows/email-request-intake.json`: trigger and action definitions from the designer's Code view
 - `flows/teams-request-intake.md`: Teams flow settings
 
 The real export (`pac solution export` then `unpack`) is in `solution/`; see `docs/solution-export.md`.

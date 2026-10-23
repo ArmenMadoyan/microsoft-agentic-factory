@@ -134,7 +134,6 @@ Dotted arrows are the customer-side harnesses and the Azure path (code and Bicep
 ```
 .
 ├── README.md                  this file
-├── INSTRUCTIONS.md            original plan, build order and decisions
 ├── copilot-studio/            Orchestrator and child agents as YAML (VS Code extension clone)
 ├── solution/                  Power Platform solution unpacked with pac: table, 3 flows, app,
 │                              connection references (identifiers sanitised)
