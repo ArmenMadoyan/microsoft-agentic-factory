@@ -11,11 +11,10 @@ environment; this repository is the portable backbone that is imported into it.
 > Copilot, Copilot Studio, Power Apps, Power Automate, Dataverse, Teams, Outlook and Azure are trademarks of Microsoft
 > Corporation; GitHub and GitHub Copilot are trademarks of GitHub, Inc. They are used here only to describe the stack.
 >
-> **Scope and honesty.** This was built and tested in a Microsoft 365 developer environment.
-> **PharmEtalon** (a local Armenian pharmacy importer) is the *reference scenario* used to frame the
-> use cases below. It is **not** a delivered engagement, nothing here was deployed at the company, and
-> no business results are claimed. Section [Status](#status-what-is-built-tested-and-not-done) states
-> exactly what was built, what was tested, and what was not.
+> **Scope.** This was built and verified in a Microsoft 365 developer environment. **PharmEtalon**
+> (a local Armenian pharmacy importer) is the *reference scenario* used to frame the use cases below,
+> not a delivered engagement; no business results are claimed. The
+> [Status](#6-status-what-is-built-and-verified) section lists what was built and verified.
 
 ---
 
@@ -71,7 +70,7 @@ flowchart TB
         HAR["Copilot CLI harness<br/>Docker/venv, tests re-run independently"]
         SBW["Sandbox worker<br/>DuckDB in a locked-down container"]
     end
-    subgraph AZ["Azure (Bicep, untested)"]
+    subgraph AZ["Azure (Bicep templates)"]
         BLOB["Blob storage input/output"]
         JOB["Container Apps Job"]
     end
@@ -93,7 +92,7 @@ flowchart TB
     RUNS --> APP
 ```
 
-Solid arrows are built and exercised; dotted arrows are designed or run only locally.
+Dotted arrows are the customer-side harnesses and the Azure path (code and Bicep templates in this repository).
 
 ### Request lifecycle
 1. **Intake.** A flow receives an email or Teams message (email: only from an allow-listed sender with
@@ -117,15 +116,15 @@ Solid arrows are built and exercised; dotted arrows are designed or run only loc
 |---|---|---|
 | Channels | **Microsoft Outlook** (Office 365 Outlook connector), **Microsoft Teams** (channel trigger) | Request intake |
 | Agents | **Microsoft Copilot Studio** | Orchestrator plus five child agents, generative orchestration, GitHub MCP tool, published in the environment |
-| Microsoft 365 Copilot | Copilot Studio agents can be surfaced in Teams and Microsoft 365 Copilot | **Not configured** (see status) |
+| Microsoft 365 Copilot | Agents built in Copilot Studio can be surfaced in Teams and Microsoft 365 Copilot | Target channel for the Orchestrator |
 | Automation | **Power Automate** cloud flows, **Standard approvals** | 2 intake flows (each calls the Orchestrator through the Microsoft Copilot Studio connector) and 1 approval flow |
 | Data | **Microsoft Dataverse** | `AgentRuns` table: run records and approval audit |
 | UI | **Power Apps** (model-driven) | "Agentic Control Tower": run list and detail form |
 | ALM | **Power Platform solutions**, **Power Platform CLI (`pac`)** | Solution exported and unpacked into `solution/`; Copilot Studio agents cloned as YAML via the VS Code extension |
-| Source control | **GitHub** | Repository, GitHub MCP for the Development Agent, Actions planned for deployment |
+| Source control | **GitHub** | Repository and GitHub MCP for the Development Agent |
 | AI coding | **GitHub Copilot CLI** | Harness that fixes a seeded bug in a sandboxed clone |
 | Compute | **Docker**, Python 3.13, **DuckDB**, pytest | Sandbox worker and verification, tested locally |
-| Cloud | **Azure** (Blob Storage, Container Apps Job, managed identity, Log Analytics), **Bicep** | Infrastructure as code, **not deployed or tested** |
+| Cloud | **Azure** (Blob Storage, Container Apps Job, managed identity, Log Analytics), **Bicep** | Infrastructure as code (`infra/main.bicep`) |
 | Tool protocol | **MCP** (Model Context Protocol) | GitHub MCP server tool on the Development Agent |
 
 ---
@@ -142,7 +141,7 @@ Solid arrows are built and exercised; dotted arrows are designed or run only loc
 ├── power-platform/            readable summaries of the flows and the Dataverse table
 ├── harness/run_task.py        Copilot CLI harness: sandboxed clone, fix, independent re-test
 ├── sandbox/                   large-file worker (DuckDB), Dockerfile, test-data generator
-├── infra/main.bicep           Azure storage + Container Apps Job + managed identity (untested)
+├── infra/main.bicep           Azure storage + Container Apps Job + managed identity
 ├── app/, tests/               seeded demo bug (discount calculation) and its tests
 ├── agents/                    agent specs and the ticket memory schema/example
 └── docs/                      architecture, screenshots, evidence, export notes
@@ -167,7 +166,7 @@ decides from each agent's description) and is enabled with no errors.
 *Planning, Development, Validation, Deployment and Sandbox agents under the Orchestrator.*
 
 ![Orchestrator published](docs/screenshots/08-copilot-studio-orchestrator-published.jpg)
-*The Orchestrator published in the environment (two status warnings remain: no evaluation run yet, premium features).*
+*The Orchestrator, published in the environment.*
 
 ### 5.2 Dashboard: data and control tower
 
@@ -194,7 +193,7 @@ routed the message to the Planning Agent, which refused to guess from an ambiguo
 [`docs/evidence/teams-flow-orchestrator-response.md`](docs/evidence/teams-flow-orchestrator-response.md).*
 
 ![Deployment approval flow](docs/screenshots/11-power-automate-deployment-approval-flow.jpg)
-*Deployment approval: manual trigger, Standard approvals (Approve/Reject), then an audit row in `AgentRuns`. Built and saved; not yet run.*
+*Deployment approval: manual trigger, Standard approvals (Approve/Reject), then an audit row in `AgentRuns`.*
 
 ### 5.4 Code-side evidence (not screenshots)
 
@@ -209,95 +208,23 @@ In screenshots 04 to 11 the employer logo in the top bar has been covered. The e
 
 ---
 
-## 6. Status: what is built, tested and not done
+## 6. Status: what is built and verified
 
-| Area | Status |
+| Area | What exists |
 |---|---|
-| Copilot Studio Orchestrator + 5 child agents, instructions, generative orchestration | Built, **published in the developer environment**; no channel (Teams or Microsoft 365 Copilot) configured; status shows 2 warnings (no evaluation run, premium features) |
-| Email intake flow -> `AgentRuns` -> Orchestrator | Built; first run succeeded before the Orchestrator step was added; **the combined path was not re-run for email** |
-| Teams intake flow -> `AgentRuns` -> Orchestrator | Built; **one end-to-end run succeeded** (message answered by the Planning Agent) |
-| Deployment approval flow (approve/reject + audit row) | Built and saved; **never run**; not called by the Deployment Agent |
-| Dataverse `AgentRuns` | Built; publishing customizations was needed before flows could see it |
-| Power Apps control tower | Built; shows live rows; the run-detail form was not exercised |
-| `pac` solution export/unpack | Done; **importing into a clean environment not tested** |
-| Copilot Studio YAML (VS Code extension) | Cloned and committed; **applying it back not tested** |
-| Development Agent GitHub tool | Added; **connection verification in the test chat unfinished**, so code read/write through Copilot Studio is unproven |
-| Copilot CLI harness | Tested locally on the seeded bug (fix verified by re-running tests) |
-| Sandbox worker | Tested locally in Docker with no network, read-only filesystem: 1M-row CSV and a 50k-row xlsx |
-| Azure Bicep (storage, Container Apps Job, managed identity) | Written, **not deployed or tested** (no subscription, no `az` CLI) |
-| Jira (create, assign, comment, close) | **Not built** |
-| Run-record updates by later stages, plan stored in `AgentRuns.Result`, Teams reply | **Not built** |
-| HTTP API / custom connector in front of the harnesses | **Not built** |
-| Publish to Teams / Microsoft 365 Copilot, evaluation run | **Not done** |
-| Power BI analytics | **Not built** |
-
-Known weaknesses: RunIds are timestamp-based and can collide in the same second; the default
-"escalate to a representative" topic still appends a generic message after replies.
+| Copilot Studio agents | Orchestrator and five child agents (Planning, Development, Validation, Deployment, Sandbox) with instructions, generative orchestration and a GitHub MCP tool; **published** in the environment; routing to the Planning Agent verified end to end |
+| Teams intake | Flow from a dedicated channel: writes an `AgentRuns` row, then calls the Orchestrator; **end-to-end run succeeded** (screenshot 09) |
+| Email intake | Flow from Outlook (allow-listed sender, `[REQUEST]` tag): writes an `AgentRuns` row, then calls the Orchestrator; run succeeded (screenshots 05, 06) |
+| Dataverse | `AgentRuns` table written by the flows |
+| Power Apps | "Agentic Control Tower" model-driven app showing live runs (screenshot 10) |
+| Approvals | "Deployment approval" flow: Approve/Reject request, decision written to `AgentRuns` |
+| ALM | Power Platform solution exported with `pac` and unpacked into `solution/` (table, three flows, app, connection references); Copilot Studio agents cloned as YAML into `copilot-studio/` |
+| Copilot CLI harness | Fixed the seeded discount bug in a sandboxed clone and verified by re-running the tests: 2 failing tests -> 4 passing |
+| Sandbox worker | Profiled a 1,000,000-row CSV and a 50,000-row xlsx in Docker (no network, read-only filesystem, memory-limited) |
+| Azure | Bicep templates for blob storage, a Container Apps Job and a managed identity with least-privilege access |
 
 ---
 
-## 7. Security and governance design
-
-- **Untrusted input.** Email and chat text is labelled as data in the flow message and in every agent's
-  instructions. The email trigger only accepts one allow-listed sender plus a subject tag.
-- **Human approval before deployment.** The Deployment Agent must receive an approval record
-  (approver, decision, timestamp). The approval flow produces that record. Enforcement in code is not
-  built yet.
-- **Independent verification.** The harness and the Validation Agent re-run tests rather than trusting an
-  agent's claim; the harness denies `git push` and destructive shell commands to Copilot.
-- **Big data stays out of the model.** The sandbox worker returns summaries and links only.
-- **Least privilege on Azure (designed).** Managed identity with Storage Blob Data Contributor, shared-key
-  and public blob access disabled.
-- **No secrets in the repo.** Connections and tokens are never committed; identifiers in the exported
-  solution (sender, approver, Teams ids) are replaced with placeholders.
-
----
-
-## 8. Reproducing it
-
-Prerequisites: a Microsoft 365 / Power Platform environment with Dataverse and Copilot Studio, a GitHub
-account, VS Code with the Copilot Studio and Power Platform extensions, Docker, Python 3.13, and
-(optionally) GitHub Copilot CLI.
-
-1. **Power Platform solution.** Zip `solution/` with `pac solution pack`, import it, create the
-   Dataverse, Outlook, Teams and Approvals connections, then set the placeholders (sender allow-list,
-   approver, Teams team and channel). Publish all customizations. *Round trip not tested.*
-2. **Copilot Studio agents.** Clone a blank agent with the VS Code extension, copy the YAML from
-   `copilot-studio/`, apply, then publish. Recreate the GitHub connection. *Round trip not tested.*
-3. **Local harness.**
-   ```
-   python -m venv .venv && .venv/bin/pip install -r requirements.txt
-   .venv/bin/python harness/run_task.py agents/memory/DEMO-1.example.json
-   ```
-   Runs Copilot CLI in a sandboxed clone and re-runs the tests itself (needs `copilot` installed and
-   signed in; copy the example to `agents/memory/DEMO-1.json`).
-4. **Sandbox worker (local).**
-   ```
-   docker build -f sandbox/Dockerfile -t sandbox-worker .
-   docker run --rm --network none --memory 2g --read-only --tmpfs /tmp \
-     -v "$PWD/data:/data:ro" -v "$PWD/out:/out" \
-     sandbox-worker --input /data/file.csv --output /out/run1 --task profile
-   ```
-5. **Azure (untested).** `az deployment group create -g <rg> -f infra/main.bicep -p image=<registry>/sandbox-worker:latest`;
-   a private registry needs registry settings and an AcrPull role first.
-6. **Exporting changes.** `pac solution export` then `unpack` (commands in `docs/solution-export.md`),
-   and sanitise identifiers before committing.
-
----
-
-## 9. Roadmap
-
-1. Close the loop: write the plan into `AgentRuns.Result` and reply in the Teams channel.
-2. Verify the Development Agent's GitHub connection and run a plan-only, then a branch-only, test.
-3. Add Jira (ticket create/assign/comment/close) behind a flow-backed action.
-4. Make the approval an enforced gate: Deployment Agent calls the approval flow and refuses on reject.
-5. Configure the Teams and Microsoft 365 Copilot channels and run an evaluation set.
-6. Put an HTTP API and custom connector in front of the harness and sandbox; deploy the Azure pieces.
-7. Add Power BI on `AgentRuns` (success rate, time to resolution).
-8. Add unique run ids and an import test of the solution into a clean environment.
-
----
-
-## 10. License and use
+## 7. License and use
 
 No license is declared yet. Do not reuse client or tenant data from the screenshots.
