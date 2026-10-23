@@ -152,7 +152,7 @@ Solid arrows are built and exercised; dotted arrows are designed or run only loc
 
 ## 5. Screens: agents, dashboard and automations
 
-All images are from the developer environment where this was built. They show real runs and
+All images are from the Microsoft 365 developer environment where this was built. They show real runs and
 settings, not mock-ups.
 
 ### 5.1 Agents: the orchestrator architecture in Copilot Studio
@@ -204,8 +204,8 @@ routed the message to the Planning Agent, which refused to guess from an ambiguo
 | Sandbox: 1,000,000-row CSV profile | [`docs/evidence/sandbox-profile-1m-rows.json`](docs/evidence/sandbox-profile-1m-rows.json) |
 | Sandbox: by-region aggregate over the same file | [`docs/evidence/sandbox-by-region.csv`](docs/evidence/sandbox-by-region.csv) |
 
-Screenshots 04 to 11 show a company logo and the environment name; review them before making this
-repository public.
+In screenshots 04 to 11 the employer logo in the top bar has been covered. The environment name
+("Armen Madoyan's Environment") and the author's profile picture are still visible.
 
 ---
 

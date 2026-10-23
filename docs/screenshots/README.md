@@ -13,4 +13,4 @@
 | 10-power-apps-agentruns-dashboard.jpg | Model-driven app "Agentic Control Tower": Active AgentRuns view showing four live rows |
 | 11-power-automate-deployment-approval-flow.jpg | Deployment approval flow canvas: trigger, approval, audit row |
 
-Files 04 to 11 were captured from a work-tenant developer environment and show a company logo and the environment name. Review before making this repository public.
+In files 04 to 11 the employer logo in the top bar has been covered. The environment name and the author's profile picture are still visible. History was rewritten so the original, uncovered captures are not in any commit.
